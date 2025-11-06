@@ -117,8 +117,6 @@
       }
 
       footer { position: fixed; inset-inline: 0; bottom: 10px; text-align: center; opacity: .45; font-size: 12px; letter-spacing: .06em; }
-      footer a { color: var(--text); text-decoration: none; border-bottom: 1px dotted var(--neon-soft); }
-      footer a:hover { text-decoration: underline; }
     </style>
   </head>
   <body>
@@ -132,27 +130,6 @@
       <h1 class="neon">Hello, World!</h1>
     </main>
 
-    <!-- Stopka z obfuscacją adresu -->
-    <footer>
-  © All rights reserved | 2025 |
-  <span id="email-mask">webform [at] linx.simplelogin.com</span>
-
-  <script>
-    (function(){
-      const u = "webform";
-      const d = "linx.simplelogin.com";
-      const e = u + "@" + d;
-
-      // Podmieniamy tekst na klikalny mailto
-      const el = document.getElementById("email-mask");
-      if (el) {
-        el.innerHTML = `<a href="mailto:${e}" rel="nofollow">${u} <span aria-hidden="true">@</span> ${d}</a>`;
-      }
-    })();
-  </script>
-
-  <noscript>
-    <!-- Gdy JS wyłączony → nieklikalny i nadal maskowany -->
-    webform [at] linx.simplelogin.com
-  </noscript>
-</footer>
+    <footer>© All rights reserved | 2025 | webform [at] linx.simplelogin.com</footer>
+  </body>
+</html>
