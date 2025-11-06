@@ -134,37 +134,25 @@
 
     <!-- Stopka z obfuscacją adresu -->
     <footer>
-      <!-- Fallback dla wyłączonego JS: nieklikalny, „[at]” -->
-      <noscript>© All rights reserved | 2025 | webform [at] linx.simplelogin.com</noscript>
+  © All rights reserved | 2025 |
+  <span id="email-mask">webform [at] linx.simplelogin.com</span>
 
-      <!-- Wersja widoczna po złożeniu JS -->
-      <span id="sig" style="display:none;">
-        © All rights reserved | 2025 |
-        <a id="m" href="#" aria-label="Wyślij e-mail">webform [at] linx.simplelogin.com</a>
-      </span>
+  <script>
+    (function(){
+      const u = "webform";
+      const d = "linx.simplelogin.com";
+      const e = u + "@" + d;
 
-      <script>
-        (function () {
-          try {
-            // Delikatne rozbicie, żeby nie kłuło parserów po wzorcach
-            const p = ["web","form"].join("");
-            const d = ["linx",".simplelogin",".com"].join("");
-            const at = String.fromCharCode(64);
-            const email = p + at + d;
+      // Podmieniamy tekst na klikalny mailto
+      const el = document.getElementById("email-mask");
+      if (el) {
+        el.innerHTML = `<a href="mailto:${e}" rel="nofollow">${u} <span aria-hidden="true">@</span> ${d}</a>`;
+      }
+    })();
+  </script>
 
-            var span = document.getElementById("sig");
-            var link = document.getElementById("m");
-            if (!span || !link) return;
-
-            // Tekst linku zostawiamy jako " [at] " (mniej zdradza w widoku),
-            // ale href jest prawdziwym mailto:
-            link.href = "mailto:" + email;
-            link.setAttribute("rel", "nofollow");
-            link.setAttribute("aria-label", "Wyślij e-mail na " + p + " w " + d.replace(/\./g, " kropka "));
-            span.style.display = "inline";
-          } catch (e) { /* cicho */ }
-        })();
-      </script>
-    </footer>
-  </body>
-</html>
+  <noscript>
+    <!-- Gdy JS wyłączony → nieklikalny i nadal maskowany -->
+    webform [at] linx.simplelogin.com
+  </noscript>
+</footer>
